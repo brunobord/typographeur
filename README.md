@@ -19,6 +19,14 @@ Cette bibliothèque a pour but de faire appliquer les règles de base de la typo
 * [SmartyPants, le projet initial](https://daringfireball.net/projects/smartypants/)
 * [smartypants.py, le fork le plus à jour](https://pypi.org/project/smartypants/)
 
+## Tester
+
+Pour tester, lancer (de préférence dans un virtualenv):
+
+```sh
+make test
+```
+
 ## Licence
 
 Ce projet est librement utilisable, publié sous licence MIT.
