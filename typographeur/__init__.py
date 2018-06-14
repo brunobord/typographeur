@@ -3,6 +3,8 @@ Typographeur, pour faire respecter les règles de typographie à la française.
 """
 import re
 
+__all__ = ('typographeur',)
+
 
 INSECABLE_MARKS = (':', '!', '\?', ';')
 
@@ -60,7 +62,7 @@ def _tokenize(text):
     return tokens
 
 
-def correcteur(text):
+def typographeur(text):
     tokens = _tokenize(text)
     print(tokens)
     result = []

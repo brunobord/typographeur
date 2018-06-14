@@ -1,5 +1,5 @@
 import pytest
-from typographeur import correcteur
+from typographeur import typographeur
 
 
 @pytest.mark.parametrize("input,expected", [
@@ -9,7 +9,7 @@ from typographeur import correcteur
     ('(   hello    )', '(hello)'),  # insecable here
 ])
 def test_parenthesis(input, expected):
-    output = correcteur(input)
+    output = typographeur(input)
     assert output == expected
 
 
@@ -22,7 +22,7 @@ def test_parenthesis(input, expected):
     ('hello   .', 'hello.'),  # insecable + normal here
 ])
 def test_point(input, expected):
-    output = correcteur(input)
+    output = typographeur(input)
     assert output == expected
 
 
@@ -35,7 +35,7 @@ def test_point(input, expected):
     ('hello   …', 'hello…'),  # insecable + normal here
 ])
 def test_triple_point(input, expected):
-    output = correcteur(input)
+    output = typographeur(input)
     assert output == expected
 
 
@@ -48,5 +48,5 @@ def test_triple_point(input, expected):
     ('hello   ,', 'hello,'),  # insecable + normal here
 ])
 def test_comma(input, expected):
-    output = correcteur(input)
+    output = typographeur(input)
     assert output == expected

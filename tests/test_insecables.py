@@ -1,29 +1,29 @@
 import pytest
-from typographeur import correcteur
+from typographeur import typographeur
 from .fixtures_factory import _build_fixture_insecable
 
 
 @pytest.mark.parametrize("input,expected", _build_fixture_insecable(':'))
 def test_colon(input, expected):
-    output = correcteur(input)
+    output = typographeur(input)
     assert output == expected
 
 
 @pytest.mark.parametrize("input,expected", _build_fixture_insecable('!'))
 def test_exclamation(input, expected):
-    output = correcteur(input)
+    output = typographeur(input)
     assert output == expected
 
 
 @pytest.mark.parametrize("input,expected", _build_fixture_insecable('?'))
 def test_question(input, expected):
-    output = correcteur(input)
+    output = typographeur(input)
     assert output == expected
 
 
 @pytest.mark.parametrize("input,expected", _build_fixture_insecable(';'))
 def test_semicolon(input, expected):
-    output = correcteur(input)
+    output = typographeur(input)
     assert output == expected
 
 
@@ -35,5 +35,5 @@ def test_semicolon(input, expected):
     ),
 ])
 def test_insecable(input, expected):
-    output = correcteur(input)
+    output = typographeur(input)
     assert output == expected

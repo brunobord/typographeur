@@ -1,5 +1,5 @@
 import pytest
-from typographeur import correcteur
+from typographeur import typographeur
 
 
 @pytest.mark.parametrize("input,expected", [
@@ -7,5 +7,5 @@ from typographeur import correcteur
     ('hello…', 'hello…'),
 ])
 def test_parenthesis(input, expected):
-    output = correcteur(input)
+    output = typographeur(input)
     assert output == expected
