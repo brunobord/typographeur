@@ -2,6 +2,8 @@
 
 > Faire respecter les règles typographiques françaises en HTML.
 
+Status: Pre-Alpha
+
 ## Utilisation
 
 ```python
