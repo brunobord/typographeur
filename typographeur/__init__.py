@@ -64,7 +64,6 @@ def _tokenize(text):
 
 def typographeur(text):
     tokens = _tokenize(text)
-    print(tokens)
     result = []
     for token_type, token in tokens:
         if token_type == 'tag':
