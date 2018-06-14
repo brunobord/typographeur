@@ -8,6 +8,8 @@
 >>> from typographeur import correcteur
 >>> correcteur('<p>Exemple : <em>Salut ! ça va ?</em></p>')
 "<p>Exemple&nbsp;: <em>Salut&nbsp;! ça va&nbsp;?</em></p>"
+>>> correcteur('<strong>et, entre ( parenthèses...)</strong>')
+"<strong>et, entre (parenthèses…)</strong>"
 ```
 
 ## Origine

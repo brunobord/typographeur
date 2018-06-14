@@ -72,7 +72,16 @@ def correcteur(text):
                 mark = insecable_mark[-1]
                 pattern = fr'((\s*?){insecable_mark})'
                 token = re.sub(pattern, f' {mark}', token)
+
+            # Parenthesis
+            token = re.sub(r'(\((\s+))', f'(', token)
+            token = re.sub(r'((\s+)\))', f')', token)
+            # Points
+            token = token.replace(r'...', '…')
+
+            # Final token result
             result.append(token)
+
 
     result = "".join(result)
     result = result.replace(' ', '&nbsp;')
