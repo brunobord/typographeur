@@ -4,6 +4,8 @@
 
 Status: Pre-Alpha
 
+[![Build Status](https://travis-ci.org/brunobord/typographeur.svg?branch=master)](https://travis-ci.org/brunobord/typographeur)
+
 ## Utilisation
 
 ```python
