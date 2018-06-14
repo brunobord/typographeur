@@ -27,6 +27,8 @@ Pour tester, lancer (de préférence dans un virtualenv):
 make test
 ```
 
+Un exemple complet des correctifs que peut produire `typographeur` est disponible dans le dossier `tests/examples/`. On y trouve un fichier `input.html`, qui contient de nombreuses fautes de typographie, et `expected.html`, qui est le résultat attendu après corerection.
+
 ## Licence
 
 Ce projet est librement utilisable, publié sous licence MIT.
