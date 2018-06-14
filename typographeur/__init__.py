@@ -70,10 +70,7 @@ def correcteur(text):
         else:
             for insecable_mark in INSECABLE_MARKS:
                 mark = insecable_mark[-1]
-                pattern = fr'((\s+?){insecable_mark})'
-                stuff = re.findall(pattern, token)
-                for found in stuff:
-                    token = token.replace(found[0], f'{mark}')
-                token = token.replace(f'{mark}', f'&nbsp;{mark}')
+                pattern = fr'((\s*?){insecable_mark})'
+                token = re.sub(pattern, f'&nbsp;{mark}', token)
             result.append(token)
     return "".join(result)
