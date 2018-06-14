@@ -79,9 +79,13 @@ def correcteur(text):
             # Points
             token = token.replace(r'...', '…')
 
+            # no space
+            token = re.sub(r'(\s+?)\.', f'.', token)
+            token = re.sub(r'(\s+?)…', f'…', token)
+            token = re.sub(r'(\s+?),', f',', token)
+
             # Final token result
             result.append(token)
-
 
     result = "".join(result)
     result = result.replace(' ', '&nbsp;')
