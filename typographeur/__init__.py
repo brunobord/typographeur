@@ -4,7 +4,7 @@ Typographeur, pour faire respecter les règles de typographie à la française.
 import re
 
 
-INSECABLE_MARKS = (':', '!', '\?')
+INSECABLE_MARKS = (':', '!', '\?', ';')
 
 
 def _tokenize(text):
@@ -71,6 +71,9 @@ def correcteur(text):
             for insecable_mark in INSECABLE_MARKS:
                 mark = insecable_mark[-1]
                 pattern = fr'((\s*?){insecable_mark})'
-                token = re.sub(pattern, f'&nbsp;{mark}', token)
+                token = re.sub(pattern, f' {mark}', token)
             result.append(token)
-    return "".join(result)
+
+    result = "".join(result)
+    result = result.replace(' ', '&nbsp;')
+    return result
