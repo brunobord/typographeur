@@ -14,3 +14,11 @@ from typographeur import typographeur
 def test_quotes(input, expected):
     output = typographeur(input)
     assert output == expected
+
+
+@pytest.mark.parametrize("input,expected", [
+    ('<p class="something">hello</p>', '<p class="something">hello</p>'),
+])
+def test_dont_convert_html_attributes(input, expected):
+    output = typographeur(input)
+    assert output == expected
