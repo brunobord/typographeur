@@ -88,6 +88,10 @@ def typographeur(text):
         if token_type == 'tag':
             result.append(token)
         else:
+
+            # Clear up &nbsp; entities into ' ' (insecable space)
+            token = token.replace('&nbsp;', ' ')
+
             for insecable_mark in INSECABLE_MARKS:
                 mark = insecable_mark[-1]
                 pattern = fr'((\s*?){insecable_mark})'
@@ -113,5 +117,6 @@ def typographeur(text):
             result.append(token)
 
     result = "".join(result)
+    # All changes have been made, we can convert insecable spaces back.
     result = result.replace(' ', '&nbsp;')
     return result

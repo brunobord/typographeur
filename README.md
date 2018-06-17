@@ -41,7 +41,9 @@ Un exemple complet des correctifs que peut produire `typographeur` est disponibl
 * pas d'espace avant un point (simple `.` ou `…`) ou une virgule (`,`).
 * les guillemets doubles classiques ("") sont remplacés par des chevrons («»). À noter l'utilisation d'espaces insécables à l'intérieur des guillemets français.
 
-À noter, bien que non-testée, la bibliothèque est supposée corriger les textes « bruts » (markdown, par exemple) aussi bien que le HTML.
+Pour votre plaisir, un document HTML qui respecte les règles énoncées ci-dessus restera inchangé.
+
+Bien que non-testée, la bibliothèque est supposée corriger les textes « bruts » (markdown, par exemple) aussi bien que le HTML.
 
 ## Autres implémentations
 
