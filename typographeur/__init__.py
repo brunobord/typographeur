@@ -78,7 +78,7 @@ def typographeur(text):
             token = re.sub(r'(\((\s+))', f'(', token)
             token = re.sub(r'((\s+)\))', f')', token)
             # Points
-            token = token.replace(r'...', '…')
+            token = re.sub(r'(\.{2,})', '…', token)
 
             # no space
             token = re.sub(r'(\s+?)\.', f'.', token)
