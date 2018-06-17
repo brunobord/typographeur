@@ -75,15 +75,15 @@ def typographeur(text):
                 token = re.sub(pattern, f' {mark}', token)
 
             # Parenthesis
-            token = re.sub(r'(\((\s+))', f'(', token)
-            token = re.sub(r'((\s+)\))', f')', token)
+            token = re.sub(r'(\((\s+))', '(', token)
+            token = re.sub(r'((\s+)\))', ')', token)
             # Points
             token = re.sub(r'(\.{2,})', '…', token)
 
             # no space
-            token = re.sub(r'(\s+?)\.', f'.', token)
-            token = re.sub(r'(\s+?)…', f'…', token)
-            token = re.sub(r'(\s+?),', f',', token)
+            token = re.sub(r'(\s+?)\.', '.', token)
+            token = re.sub(r'(\s+?)…', '…', token)
+            token = re.sub(r'(\s+?),', ',', token)
 
             # Final token result
             result.append(token)
