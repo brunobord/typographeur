@@ -112,6 +112,8 @@ def typographeur(text):
             token = convert_quote(token)
             token = re.sub(r'«(\s*)', '« ', token)
             token = re.sub(r'(\s*)»', ' »', token)
+            # Apostrophes
+            token = re.sub(r"([a-z])'(\s*)", r'\1’', token)
 
             # Final token result
             result.append(token)

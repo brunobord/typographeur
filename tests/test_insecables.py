@@ -31,7 +31,7 @@ def test_semicolon(input, expected):
     (
         "<p>Exemple : <em>Salut ! ça va ?</em></p>\nIci ; j'aime",
         "<p>Exemple&nbsp;: <em>Salut&nbsp;! ça va&nbsp;?</em></p>"
-        "\nIci&nbsp;; j'aime"
+        "\nIci&nbsp;; j’aime"
     ),
 ])
 def test_insecable(input, expected):

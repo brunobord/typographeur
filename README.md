@@ -40,6 +40,7 @@ Un exemple complet des correctifs que peut produire `typographeur` est disponibl
 * les points de suspension `...` sont remplacés par le caractère `…` ; de même, on *nettoie* les doubles, triples, quadruples, n-uples points. Ça n'existe pas, c'est tout.
 * pas d'espace avant un point (simple `.` ou `…`) ou une virgule (`,`).
 * les guillemets doubles classiques ("") sont remplacés par des chevrons («»). À noter l'utilisation d'espaces insécables à l'intérieur des guillemets français.
+* les apostrophes `'` sont changées en `’` et ne doivent pas être suivies d'espaces.
 
 Pour votre plaisir, un document HTML qui respecte les règles énoncées ci-dessus restera inchangé.
 
