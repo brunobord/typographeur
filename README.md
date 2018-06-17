@@ -33,6 +33,15 @@ make test
 
 Un exemple complet des correctifs que peut produire `typographeur` est disponible dans le dossier `tests/examples/`. On y trouve un fichier `input.html`, qui contient de nombreuses fautes de typographie, et `expected.html`, qui est le résultat attendu après corerection.
 
+## Règles implémentées
+
+* les signes `:`, `!`, `?` et `;` doivent être précédés d'une (et une seule) espace insécable.
+* pas d'espace après une parenthèse ouvrante, ni avant une parenthèse fermante.
+* les points de suspension `...` sont remplacés par le caractère `…` ; de même, on *nettoie* les doubles, triples, quadruples, n-uples points. Ça n'existe pas, c'est tout.
+* pas d'espace avant un point (simple `.` ou `…`) ou une virgule (`,`).
+
+À noter, bien que non-testée, la bibliothèque est supposée corriger les textes « bruts » (markdown, par exemple) aussi bien que le HTML.
+
 ## Autres implémentations
 
 Des fonctionnalités similaires ont été implémentées dans d'autres langages de programmation. À noter :
