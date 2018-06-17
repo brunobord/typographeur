@@ -33,6 +33,17 @@ make test
 
 Un exemple complet des correctifs que peut produire `typographeur` est disponible dans le dossier `tests/examples/`. On y trouve un fichier `input.html`, qui contient de nombreuses fautes de typographie, et `expected.html`, qui est le résultat attendu après corerection.
 
+## Autres implémentations
+
+Des fonctionnalités similaires ont été implémentées dans d'autres langages de programmation. À noter :
+
+* [JoliTypo](https://github.com/jolicode/JoliTypo), en PHP,
+* [Cette extension pour Jekyll](https://github.com/borisschapira/jekyll-microtypo/blob/master/lib/jekyll/microtypo.rb), en Ruby.
+
+*Autre ressource :*
+
+[Grammalecte](https://www.dicollecte.org/) est une extension pour LibreOffice, Firefox et Thunderbird pour aider à corriger (entre autres) les fautes de typographie.
+
 ## Licence
 
 Ce projet est librement utilisable, publié sous licence MIT.
