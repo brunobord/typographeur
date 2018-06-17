@@ -11,6 +11,6 @@ from typographeur import typographeur
         '«&nbsp;hello&nbsp;» je vais «&nbsp;bien&nbsp;»'
     ),
 ])
-def test_parenthesis(input, expected):
+def test_quotes(input, expected):
     output = typographeur(input)
     assert output == expected

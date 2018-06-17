@@ -9,6 +9,6 @@ from typographeur import typographeur
     ('hello....', 'hello…'),
     ('hello.........', 'hello…'),
 ])
-def test_parenthesis(input, expected):
+def test_points(input, expected):
     output = typographeur(input)
     assert output == expected
