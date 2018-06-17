@@ -62,6 +62,25 @@ def _tokenize(text):
     return tokens
 
 
+def convert_quote(text):
+    in_quote = False
+    result = []
+    for c in text:
+        if c == '"':
+            # starting quote
+            if not in_quote:
+                # Append guillemets + insecable space
+                result.append('« ')
+                in_quote = True
+            else:
+                # Append insecable space + closing guillemets
+                result.append(' »')
+                in_quote = False
+        else:
+            result.append(c)
+    return ''.join(result)
+
+
 def typographeur(text):
     tokens = _tokenize(text)
     result = []
@@ -84,6 +103,11 @@ def typographeur(text):
             token = re.sub(r'(\s+?)\.', '.', token)
             token = re.sub(r'(\s+?)…', '…', token)
             token = re.sub(r'(\s+?),', ',', token)
+
+            # Double quotes
+            token = convert_quote(token)
+            token = re.sub(r'«(\s*)', '« ', token)
+            token = re.sub(r'(\s*)»', ' »', token)
 
             # Final token result
             result.append(token)
