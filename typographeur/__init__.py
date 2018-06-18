@@ -1,12 +1,15 @@
 """
 Typographeur, pour faire respecter les règles de typographie à la française.
 """
+from collections import Counter
 import re
+
 
 __all__ = ('typographeur',)
 
 
 INSECABLE_MARKS = (':', '!', '\?', ';')
+TAGS_TO_SKIP = ['pre', 'samp', 'code', 'tt', 'kbd', 'script', 'style', 'math']
 
 
 def _tokenize(text):
@@ -62,6 +65,20 @@ def _tokenize(text):
     return tokens
 
 
+def is_enter_skip(text):
+    for tag in TAGS_TO_SKIP:
+        if text.startswith(f'<{tag}'):
+            return tag
+    return False
+
+
+def is_exit_skip(text):
+    for tag in TAGS_TO_SKIP:
+        if text.startswith(f'</{tag}'):
+            return tag
+    return False
+
+
 def convert_quote(text):
     in_quote = False
     result = []
@@ -84,10 +101,22 @@ def convert_quote(text):
 def typographeur(text):
     tokens = _tokenize(text)
     result = []
+    skip_counter = Counter()
     for token_type, token in tokens:
         if token_type == 'tag':
+            # Check if it's a "enter" skip tag
+            _is_enter_skip = is_enter_skip(token)
+            _is_exit_skip = is_exit_skip(token)
+            if _is_enter_skip:
+                skip_counter[_is_enter_skip] += 1
+            elif _is_exit_skip:
+                skip_counter[_is_exit_skip] += 1
             result.append(token)
         else:
+            if sum(skip_counter.values()):
+                # We need to skip
+                result.append(token)
+                continue
 
             # Clear up &nbsp; entities into ' ' (insecable space)
             token = token.replace('&nbsp;', ' ')

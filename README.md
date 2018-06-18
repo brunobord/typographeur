@@ -44,6 +44,8 @@ Un exemple complet des correctifs que peut produire `typographeur` est disponibl
 
 Pour votre plaisir, un document HTML qui respecte les règles énoncées ci-dessus restera inchangé.
 
+Les blocs encadrés par les balises `pre`, `samp`, `code`, `tt`, `kbd`, `script`, `style`, `math` ne seront pas corrigés, pour que les bouts de code soient affichés sans être déteriorés ; et que les éventuels scripts JS ne présentent pas d'erreur de syntaxe.
+
 Bien que non-testée, la bibliothèque est supposée corriger les textes « bruts » (markdown, par exemple) aussi bien que le HTML.
 
 ## Autres implémentations
