@@ -3,6 +3,7 @@
 ## master (unreleased)
 
 * Ajout de dossier ``dist/`` au ``.gitignore``.
+* Changement de l'URL du projet (github).
 
 ## v0.1.0
 
