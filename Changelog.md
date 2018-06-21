@@ -1,5 +1,9 @@
 # Changelog
 
+## master (unreleased)
+
+* Ajout de dossier ``dist/`` au ``.gitignore``.
+
 ## v0.1.0
 
 Première release de ``typographeur``.
