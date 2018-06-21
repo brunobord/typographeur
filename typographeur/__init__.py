@@ -1,12 +1,14 @@
 """
 Typographeur, pour faire respecter les règles de typographie à la française.
 """
+from argparse import ArgumentParser, FileType
 from collections import Counter
 import re
+import sys
 
 
+__version__ = '0.0.0'
 __all__ = ('typographeur',)
-
 
 TAGS_TO_SKIP = ['pre', 'samp', 'code', 'tt', 'kbd', 'script', 'style', 'math']
 
@@ -191,3 +193,70 @@ def typographeur(text,
     # All changes have been made, we can convert insecable spaces back.
     result = result.replace(' ', '&nbsp;')
     return result
+
+
+def main():
+    parser = ArgumentParser(
+        "Typographeur, pour faire respecter "
+        "les règles de typographie à la française."
+    )
+    parser.add_argument(
+        '--version', action='version', version=__version__,
+        help="Display current version"
+    )
+
+    parser.add_argument(
+        '--skip-parenthesis', action='store_false',
+        help="Don't apply parenthesis rule",
+        default=True, dest='fix_parenthesis')
+    parser.add_argument(
+        '--skip-colon', action='store_false',
+        help="Don't apply colon rule",
+        default=True, dest='fix_colon')
+    parser.add_argument(
+        '--skip-exclamation', action='store_false',
+        help="Don't apply exclamation point rule",
+        default=True, dest='fix_exclamation')
+    parser.add_argument(
+        '--skip-interrogation', action='store_false',
+        help="Don't apply interrogation point rule",
+        default=True, dest='fix_interrogation')
+    parser.add_argument(
+        '--skip-semicolon', action='store_false',
+        help="Don't apply semicolon rule",
+        default=True, dest='fix_semicolon')
+    parser.add_argument(
+        '--skip-ellipsis', action='store_false',
+        help="Don't apply ellipsis rule",
+        default=True, dest='fix_ellipsis')
+    parser.add_argument(
+        '--skip-point-space', action='store_false',
+        help="Don't apply the 'no space before points' rule",
+        default=True, dest='fix_point_space')
+    parser.add_argument(
+        '--skip-comma-space', action='store_false',
+        help="Don't apply the 'no space before commas' rule",
+        default=True, dest='fix_comma_space')
+    parser.add_argument(
+        '--skip-double-quote', action='store_false',
+        help="Don't transform double quotes into french guillemets",
+        default=True, dest='fix_double_quote')
+    parser.add_argument(
+        '--skip-apostrophes', action='store_false',
+        help="Don't transform single quotes into french apostrophes",
+        default=True, dest='fix_apostrophes')
+
+    parser.add_argument(
+        'files', metavar='FILE', type=FileType('r'),
+        nargs='*', help='File(s) to be processed ')
+
+    args = parser.parse_args()
+
+    options = [arg for arg in dir(args) if arg.startswith('fix_')]
+    options = {arg: getattr(args, arg) for arg in options}
+
+    if args.files:
+        for f in args.files:
+            print(typographeur(f.read(), **options), end='')
+    else:
+        print(typographeur(sys.stdin.read(), **options), end='')

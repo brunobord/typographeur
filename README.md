@@ -50,7 +50,7 @@ Bien que non-testée, la bibliothèque est supposée corriger les textes « bru
 
 ### Paramètres
 
-Chaque règle peut être désactivée via le paramétrage de la fonction ``typographeur``:
+Chaque règle peut être désactivée via le paramétrage de la fonction ``typographeur()`` :
 
 * ``fix_parenthesis`` : appliquer la règle pour les parenthèse.
 * ``fix_colon`` : appliquer la règle pour les deux-points (:).
@@ -63,6 +63,39 @@ Chaque règle peut être désactivée via le paramétrage de la fonction ``typog
 * ``fix_double_quote`` : transformer les guillemets doubles en chevrons.
 * ``fix_apostrophes`` : transformer les apostrophes "dactylographiques" en apostrophes "typographiques".
 
+## Outil en ligne de commande
+
+Une fois installé, le paquet propose un outil en ligne de commande. Exemples d'utilisation :
+
+```sh
+$ echo "<p>Salut! ça va?</p>" | typographeur
+<p>Salut&nbsp; ça va&nbsp;?</p>
+```
+
+On peut également passer un ou plusieurs fichiers en tant que paramètres :
+
+```sh
+$ typographeur input1.html input2.html
+```
+
+Par défaut, tous les paramètres de la fonction ``typographeur()`` sont activés. On peut les désactiver via les options suivantes :
+
+* ``--skip-parenthesis``,
+* ``--skip-colon``,
+* ``--skip-exclamation``,
+* ``--skip-interrogation``,
+* ``--skip-semicolon``,
+* ``--skip-ellipsis``,
+* ``--skip-point-space``,
+* ``--skip-comma-space``,
+* ``--skip-double-quote``,
+* ``--skip-apostrophes``.
+
+Toutes les options disponibles sont visibles via :
+
+```sh
+$ typographeur --help
+```
 
 ## Autres implémentations
 
