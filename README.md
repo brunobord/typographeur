@@ -2,7 +2,7 @@
 
 > Faire respecter les règles typographiques françaises en HTML.
 
-Status: Pre-Alpha
+Status: Beta
 
 [![Build Status](https://travis-ci.org/brunobord/typographeur.svg?branch=master)](https://travis-ci.org/brunobord/typographeur)
 
