@@ -8,7 +8,6 @@ import re
 __all__ = ('typographeur',)
 
 
-INSECABLE_MARKS = (':', '!', '\?', ';')
 TAGS_TO_SKIP = ['pre', 'samp', 'code', 'tt', 'kbd', 'script', 'style', 'math']
 
 
@@ -98,7 +97,28 @@ def convert_quote(text):
     return ''.join(result)
 
 
-def typographeur(text):
+def typographeur(text,
+                 fix_parenthesis=True,
+                 fix_colon=True, fix_exclamation=True,
+                 fix_interrogation=True, fix_semicolon=True,
+                 fix_ellipsis=True, fix_point_space=True,
+                 fix_comma_space=True, fix_double_quote=True,
+                 fix_apostrophes=True):
+    """Apply french typography rules to the given text.
+
+    :param text: The text to parse
+    :param fix_parenthesis: apply the parenthesis rule.
+    :param fix_colon: apply the rule for colons (:).
+    :param fix_exclamation: apply the rule for exclamation points (!).
+    :param fix_interrogation: apply the rule for interrogation points (?).
+    :param fix_semicolon: apply the rule for semicolon (;).
+    :param fix_ellipsis: apply the rule for ellipsis (... -> …).
+    :param fix_point_space: remove spaces before points (. or …).
+    :param fix_comma_space: remove spaces before commas (,).
+    :param fix_double_quote: change double quotes into french guillemets («»).
+    :param fix_apostrophes: change single quotes with typographic apostrophes.
+    :returns: The same text, with all rules applied.
+    """
     tokens = _tokenize(text)
     result = []
     skip_counter = Counter()
@@ -121,28 +141,48 @@ def typographeur(text):
             # Clear up &nbsp; entities into ' ' (insecable space)
             token = token.replace('&nbsp;', ' ')
 
-            for insecable_mark in INSECABLE_MARKS:
+            insecable_marks = set([':', '!', '\?', ';'])
+            if not fix_colon:
+                insecable_marks.remove(':')
+            if not fix_exclamation:
+                insecable_marks.remove('!')
+            if not fix_interrogation:
+                insecable_marks.remove('\?')
+            if not fix_semicolon:
+                insecable_marks.remove(';')
+
+            for insecable_mark in insecable_marks:
                 mark = insecable_mark[-1]
                 pattern = fr'((\s*?){insecable_mark})'
                 token = re.sub(pattern, f' {mark}', token)
 
             # Parenthesis
-            token = re.sub(r'(\((\s+))', '(', token)
-            token = re.sub(r'((\s+)\))', ')', token)
-            # Points
-            token = re.sub(r'(\.{2,})', '…', token)
+            if fix_parenthesis:
+                token = re.sub(r'(\((\s+))', '(', token)
+                token = re.sub(r'((\s+)\))', ')', token)
 
-            # no space
-            token = re.sub(r'(\s+?)\.', '.', token)
-            token = re.sub(r'(\s+?)…', '…', token)
-            token = re.sub(r'(\s+?),', ',', token)
+            # Points de suspension
+            if fix_ellipsis:
+                token = re.sub(r'(\.{2,})', '…', token)
+
+            # No space before points
+            if fix_point_space:
+                token = re.sub(r'(\s+?)\.', '.', token)
+                token = re.sub(r'(\s+?)…', '…', token)
+
+            # No space before commas
+            if fix_comma_space:
+                token = re.sub(r'(\s+?),', ',', token)
 
             # Double quotes
-            token = convert_quote(token)
-            token = re.sub(r'«(\s*)', '« ', token)
-            token = re.sub(r'(\s*)»', ' »', token)
+            if fix_double_quote:
+                token = convert_quote(token)
+                token = re.sub(r'«(\s*)', '« ', token)
+                token = re.sub(r'(\s*)»', ' »', token)
+
             # Apostrophes
-            token = re.sub(r"([a-z])'(\s*)", r'\1’', token)
+            if fix_apostrophes:
+                token = re.sub(r"([a-z])'(\s*)", r'\1’', token)
 
             # Final token result
             result.append(token)

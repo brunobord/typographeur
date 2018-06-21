@@ -48,6 +48,22 @@ Les blocs encadrés par les balises `pre`, `samp`, `code`, `tt`, `kbd`, `script`
 
 Bien que non-testée, la bibliothèque est supposée corriger les textes « bruts » (markdown, par exemple) aussi bien que le HTML.
 
+### Paramètres
+
+Chaque règle peut être désactivée via le paramétrage de la fonction ``typographeur``:
+
+* ``fix_parenthesis`` : appliquer la règle pour les parenthèse.
+* ``fix_colon`` : appliquer la règle pour les deux-points (:).
+* ``fix_exclamation`` : appliquer la règle pour les points d'exclamation (!).
+* ``fix_interrogation`` : appliquer la règle pour les points d'interrogation (?).
+* ``fix_semicolon`` : appliquer la règle pour les points-virgules (;).
+* ``fix_ellipsis`` : appliquer la règle pour les points de suspension (... -> …).
+* ``fix_point_space`` : supprimer les espaces avant les points (… ou .).
+* ``fix_comma_space`` : supprimer les espaces avant les virgules (,).
+* ``fix_double_quote`` : transformer les guillemets doubles en chevrons.
+* ``fix_apostrophes`` : transformer les apostrophes "dactylographiques" en apostrophes "typographiques".
+
+
 ## Autres implémentations
 
 Des fonctionnalités similaires ont été implémentées dans d'autres langages de programmation. À noter :
