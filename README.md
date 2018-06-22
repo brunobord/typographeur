@@ -49,8 +49,6 @@ Pour votre plaisir, un document HTML qui respecte les règles énoncées ci-dess
 
 Les blocs encadrés par les balises `pre`, `samp`, `code`, `tt`, `kbd`, `script`, `style`, `math` ne seront pas corrigés, pour que les bouts de code soient affichés sans être déteriorés ; et que les éventuels scripts JS ne présentent pas d'erreur de syntaxe.
 
-Bien que non-testée, la bibliothèque est supposée corriger les textes « bruts » (markdown, par exemple) aussi bien que le HTML.
-
 ### Paramètres
 
 Chaque règle peut être désactivée via le paramétrage de la fonction ``typographeur()`` :
@@ -101,6 +99,31 @@ Toutes les options disponibles sont visibles via :
 ```sh
 $ typographeur --help
 ```
+
+### Limitations
+
+L'objectif de cette bibliothèque reste modeste : il est vraisemblable que certaines règles typographiques ne pourront jamais être implémentées et nous ne cherchons pas ici la perfection. Elle restera une sorte "d'aide à la rédaction", mais rien ne remplacera jamais l'application manuelle des ces règles. Les ouvrages ou les sites de référence sont légions, il est bien vain d'essayer de les lister tous : une simple recherche vous en convaincra. Bon courage !
+
+#### Support du texte brut
+
+Bien que non-testée, la bibliothèque est supposée corriger les textes « bruts » (markdown, par exemple) aussi bien que le HTML, dans une certaine limite. A priori, il vaut mieux désactiver l'option qui corrige les espaces insécables.
+
+Avec la fonction :
+
+```python
+>>> from typographeur import typographeur
+>>> typographeur('Il lui *demanda*    : "ça va?" , elle répondit: "oui !"', fix_nbsp=False)
+'Il lui *demanda*\xa0: «\xa0ça va\xa0?\xa0», elle répondit\xa0: «\xa0oui\xa0!\xa0»'
+```
+
+Avec l'outil en ligne de commande :
+
+```sh
+echo 'Il lui *demanda*    : "ça va?" , elle répondit: "oui !"' | typographeur --skip-nbsp
+Il lui *demanda* : « ça va ? », elle répondit : « oui ! »
+```
+
+Autre limitation : les blocs de code encadrés par des triples-antiquotes ne seront pas proprement échappées.
 
 ## Autres implémentations
 

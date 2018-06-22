@@ -6,6 +6,7 @@
 * Changement de l'URL du projet (github).
 * Ajout d'une option pour désactiver la transformation des espaces insécables en ``&nbsp;`` (#11).
 * Ajout du support Python 3.7 (#10).
+* État de l'art du support texte brut ou Markdown (#8).
 
 ## v0.1.0
 
