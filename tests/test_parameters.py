@@ -1,3 +1,4 @@
+import pytest
 from typographeur import typographeur
 
 
@@ -62,3 +63,15 @@ def test_apostrophes():
     input = "l'éléphant"
     output = typographeur(input, fix_apostrophes=False)
     assert output == input
+
+
+@pytest.mark.parametrize("input,expected", [
+    ('hello:', 'hello :'),
+    ('hello :', 'hello :'),  # normal space
+    ('hello :', 'hello :'),  # insecable space
+])
+def test_nbsp(input, expected):
+    output = typographeur(input, fix_nbsp=False)
+    # spaces are replaced by insecable spaces,
+    # insecable spaces are not replaced by `&nbsp;`
+    assert output == expected

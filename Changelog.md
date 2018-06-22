@@ -4,6 +4,7 @@
 
 * Ajout de dossier ``dist/`` au ``.gitignore``.
 * Changement de l'URL du projet (github).
+* Ajout d'une option pour désactiver la transformation des espaces insécables en ``&nbsp;`` (#11).
 
 ## v0.1.0
 

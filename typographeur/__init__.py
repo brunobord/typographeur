@@ -105,7 +105,7 @@ def typographeur(text,
                  fix_interrogation=True, fix_semicolon=True,
                  fix_ellipsis=True, fix_point_space=True,
                  fix_comma_space=True, fix_double_quote=True,
-                 fix_apostrophes=True):
+                 fix_apostrophes=True, fix_nbsp=True):
     """Apply french typography rules to the given text.
 
     :param text: The text to parse
@@ -119,6 +119,7 @@ def typographeur(text,
     :param fix_comma_space: remove spaces before commas (,).
     :param fix_double_quote: change double quotes into french guillemets («»).
     :param fix_apostrophes: change single quotes with typographic apostrophes.
+    :param fix_nbsp: change insecable spaces into &nbsp; entities.
     :returns: The same text, with all rules applied.
     """
     tokens = _tokenize(text)
@@ -191,7 +192,8 @@ def typographeur(text,
 
     result = "".join(result)
     # All changes have been made, we can convert insecable spaces back.
-    result = result.replace(' ', '&nbsp;')
+    if fix_nbsp:
+        result = result.replace(' ', '&nbsp;')
     return result
 
 
@@ -245,6 +247,10 @@ def main():
         '--skip-apostrophes', action='store_false',
         help="Don't transform single quotes into french apostrophes",
         default=True, dest='fix_apostrophes')
+    parser.add_argument(
+        '--skip-nbsp', action='store_false',
+        help="Don't insecable spaces into HTML entities",
+        default=True, dest='fix_nbsp')
 
     parser.add_argument(
         'files', metavar='FILE', type=FileType('r'),
