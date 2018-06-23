@@ -55,7 +55,8 @@ Un exemple complet des correctifs que peut produire `typographeur` est disponibl
 
 ## Règles implémentées
 
-* les signes `:`, `!`, `?` et `;` doivent être précédés d'une (et une seule) espace insécable.
+* les signes `!`, `?` et `;` doivent être précédés d'une (et une seule) espace fine insécable.
+* le signe `:` doit être précédé d'une espace insécable.
 * pas d'espace après une parenthèse ouvrante, ni avant une parenthèse fermante.
 * les points de suspension `...` sont remplacés par le caractère `…` ; de même, on *nettoie* les doubles, triples, quadruples, n-uples points. Le seul cas particulier, c'est celui de deux points encadrés par des crochets, dans le cas de l'ellipse d'une citation : ``[..]``.
 * pas d'espace avant un point (simple `.` ou `…`) ou une virgule (`,`).

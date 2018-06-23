@@ -7,6 +7,7 @@
 * Instructions d'installation dans le README.
 * Correctif : deux points encadrés par des crochets sont des ellipses acceptables et ne doivent pas être remplacés par "…" (#13).
 * Correctif : les balises autofermées HTML ne comptent pas comme débuts de blocs à ignorer (#15).
+* Correctif : avant un point-virgule, un point d'interrogation ou un point d'exclamation, on insère une espace fine insécable (#14).
 
 ## v0.2.0
 

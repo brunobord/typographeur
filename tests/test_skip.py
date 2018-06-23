@@ -15,11 +15,11 @@ def test_skip_simple(input, expected):
 
 
 @pytest.mark.parametrize("input,expected", [
-    ('<code />hello!', '<code />hello&nbsp;!'),
-    ('<code/>hello!', '<code/>hello&nbsp;!'),
-    ('<code attr="meuh" />hello!', '<code attr="meuh" />hello&nbsp;!'),
-    ('<pre />hello!', '<pre />hello&nbsp;!'),
-    ('<pre/>hello!', '<pre/>hello&nbsp;!'),
+    ('<code />hello .', '<code />hello.'),
+    ('<code/>hello .', '<code/>hello.'),
+    ('<code attr="meuh" />hello .', '<code attr="meuh" />hello.'),
+    ('<pre />hello .', '<pre />hello.'),
+    ('<pre/>hello .', '<pre/>hello.'),
 ])
 def test_auto_closed(input, expected):
     output = typographeur(input)

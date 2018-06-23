@@ -144,21 +144,25 @@ def typographeur(text,
 
             # Clear up &nbsp; entities into ' ' (insecable space)
             token = token.replace('&nbsp;', ' ')
+            # Clear HTML entities into ' ' (fine insecable space)
+            token = token.replace('&#8239;', ' ')
 
-            insecable_marks = set([':', '!', '\?', ';'])
-            if not fix_colon:
-                insecable_marks.remove(':')
+            if fix_colon:
+                pattern = fr'((\s*?):)'
+                token = re.sub(pattern, f' :', token)
+
+            fine_insecable_marks = set([';', '\?', '!'])
             if not fix_exclamation:
-                insecable_marks.remove('!')
+                fine_insecable_marks.remove('!')
             if not fix_interrogation:
-                insecable_marks.remove('\?')
+                fine_insecable_marks.remove('\?')
             if not fix_semicolon:
-                insecable_marks.remove(';')
+                fine_insecable_marks.remove(';')
 
-            for insecable_mark in insecable_marks:
+            for insecable_mark in fine_insecable_marks:
                 mark = insecable_mark[-1]
                 pattern = fr'((\s*?){insecable_mark})'
-                token = re.sub(pattern, f' {mark}', token)
+                token = re.sub(pattern, f' {mark}', token)
 
             # Parenthesis
             if fix_parenthesis:
@@ -196,6 +200,7 @@ def typographeur(text,
     # All changes have been made, we can convert insecable spaces back.
     if fix_nbsp:
         result = result.replace(' ', '&nbsp;')
+        result = result.replace(' ', '&#8239;')
     return result
 
 
