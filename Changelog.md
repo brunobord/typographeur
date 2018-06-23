@@ -7,6 +7,7 @@
 * Ajout d'une option pour désactiver la transformation des espaces insécables en ``&nbsp;`` (#11).
 * Ajout du support Python 3.7 (#10).
 * État de l'art du support texte brut ou Markdown (#8).
+* Correctif : Prise en compte de l'apostrophe précédée d'une majuscule.
 
 ## v0.1.0
 

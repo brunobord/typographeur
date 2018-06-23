@@ -185,7 +185,7 @@ def typographeur(text,
 
             # Apostrophes
             if fix_apostrophes:
-                token = re.sub(r"([a-z])'(\s*)", r'\1’', token)
+                token = re.sub(r"([a-zA-Z])'(\s*)", r'\1’', token)
 
             # Final token result
             result.append(token)
