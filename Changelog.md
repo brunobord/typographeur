@@ -1,5 +1,7 @@
 # Changelog
 
+## master
+
 ## v0.2.0
 
 Publiée le 23 juin 2018.
