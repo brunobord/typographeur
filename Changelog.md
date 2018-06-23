@@ -6,6 +6,7 @@
 * Ajout d'un "classifier" (Topic :: Text Processing :: Markup :: HTML).
 * Instructions d'installation dans le README.
 * Correctif : deux points encadrés par des crochets sont des ellipses acceptables et ne doivent pas être remplacés par "…" (#13).
+* Correctif : les balises autofermées HTML ne comptent pas comme débuts de blocs à ignorer (#15).
 
 ## v0.2.0
 

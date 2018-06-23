@@ -68,7 +68,8 @@ def _tokenize(text):
 
 def is_enter_skip(text):
     for tag in TAGS_TO_SKIP:
-        if text.startswith(f'<{tag}'):
+        # Autoclose tags won't trigger a start / end.
+        if text.startswith(f'<{tag}') and not text.endswith('/>'):
             return tag
     return False
 
