@@ -2,8 +2,9 @@
 
 ## master
 
-* Correction de l'exemple du Readme pour l'outil en ligne de commande.
+* Correction de l'exemple du README pour l'outil en ligne de commande.
 * Ajout d'un "classifier" (Topic :: Text Processing :: Markup :: HTML).
+* Instructions d'installation dans le README.
 
 ## v0.2.0
 

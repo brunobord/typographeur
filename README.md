@@ -9,6 +9,23 @@ Status: Beta
 
 Compatibilité : Python 3.6 et 3.7.
 
+## Installation
+
+Comme d'autres paquets Python, Typographeur s'installe à l'aide de ``pip``, de préférence dans un ``virtualenv`` :
+
+```sh
+pip install typographeur
+```
+
+Pour contribuer ou "faire mumuse" avec ce code, [clonez le dépôt Github](https://github.com:brunobord/typographeur) et installez-le en mode "dev" dans l'environnement courant :
+
+```sh
+git clone git@github.com:brunobord/typographeur.git
+cd typographeur
+pip install -e ./
+```
+
+
 ## Utilisation
 
 ```python
