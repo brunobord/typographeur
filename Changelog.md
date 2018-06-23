@@ -1,6 +1,8 @@
 # Changelog
 
-## master (unreleased)
+## v0.2.0
+
+Publiée le 23 juin 2018.
 
 * Ajout de dossier ``dist/`` au ``.gitignore``.
 * Changement de l'URL du projet (github).
@@ -11,7 +13,7 @@
 
 ## v0.1.0
 
-Première release de ``typographeur``.
+Première release de ``typographeur``, publiée le 21 juin 2018.
 
 Deux utilisations possibles. Via une fonction Python :
 
