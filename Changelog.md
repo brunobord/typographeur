@@ -2,6 +2,8 @@
 
 ## master
 
+* Correction de l'exemple du Readme pour l'outil en ligne de commande.
+
 ## v0.2.0
 
 Publiée le 23 juin 2018.

@@ -70,7 +70,7 @@ Chaque règle peut être désactivée via le paramétrage de la fonction ``typog
 Une fois installé, le paquet propose un outil en ligne de commande. Exemples d'utilisation :
 
 ```sh
-$ echo "<p>Salut! ça va?</p>" | typographeur
+$ echo '<p>Salut! ça va?</p>' | typographeur
 <p>Salut&nbsp; ça va&nbsp;?</p>
 ```
 
@@ -123,7 +123,7 @@ echo 'Il lui *demanda*    : "ça va?" , elle répondit: "oui !"' | typographeur 
 Il lui *demanda* : « ça va ? », elle répondit : « oui ! »
 ```
 
-Autre limitation : les blocs de code encadrés par des triples-antiquotes ne seront pas proprement échappées.
+Autre limitation : les blocs de code encadrés par des triples-antiquotes ne seront pas proprement échappés.
 
 Des exemples complets se trouvent dans les fichiers en ``.md`` dans le dossier `tests/examples/`.
 
