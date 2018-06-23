@@ -3,6 +3,7 @@
 ## master
 
 * Correction de l'exemple du Readme pour l'outil en ligne de commande.
+* Ajout d'un "classifier" (Topic :: Text Processing :: Markup :: HTML).
 
 ## v0.2.0
 
