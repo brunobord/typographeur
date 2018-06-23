@@ -57,7 +57,7 @@ Un exemple complet des correctifs que peut produire `typographeur` est disponibl
 
 * les signes `:`, `!`, `?` et `;` doivent être précédés d'une (et une seule) espace insécable.
 * pas d'espace après une parenthèse ouvrante, ni avant une parenthèse fermante.
-* les points de suspension `...` sont remplacés par le caractère `…` ; de même, on *nettoie* les doubles, triples, quadruples, n-uples points. Ça n'existe pas, c'est tout.
+* les points de suspension `...` sont remplacés par le caractère `…` ; de même, on *nettoie* les doubles, triples, quadruples, n-uples points. Le seul cas particulier, c'est celui de deux points encadrés par des crochets, dans le cas de l'ellipse d'une citation : ``[..]``.
 * pas d'espace avant un point (simple `.` ou `…`) ou une virgule (`,`).
 * les guillemets doubles classiques ("") sont remplacés par des chevrons («»). À noter l'utilisation d'espaces insécables à l'intérieur des guillemets français.
 * les apostrophes `'` sont changées en `’` et ne doivent pas être suivies d'espaces.

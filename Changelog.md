@@ -5,6 +5,7 @@
 * Correction de l'exemple du README pour l'outil en ligne de commande.
 * Ajout d'un "classifier" (Topic :: Text Processing :: Markup :: HTML).
 * Instructions d'installation dans le README.
+* Correctif : deux points encadrés par des crochets sont des ellipses acceptables et ne doivent pas être remplacés par "…" (#13).
 
 ## v0.2.0
 

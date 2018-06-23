@@ -167,6 +167,7 @@ def typographeur(text,
             # Points de suspension
             if fix_ellipsis:
                 token = re.sub(r'(\.{2,})', '…', token)
+                token = re.sub(r'(\[…\])', '[..]', token)
 
             # No space before points
             if fix_point_space:
