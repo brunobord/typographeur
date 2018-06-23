@@ -104,7 +104,7 @@ $ typographeur --help
 
 L'objectif de cette bibliothèque reste modeste : il est vraisemblable que certaines règles typographiques ne pourront jamais être implémentées et nous ne cherchons pas ici la perfection. Elle restera une sorte "d'aide à la rédaction", mais rien ne remplacera jamais l'application manuelle des ces règles. Les ouvrages ou les sites de référence sont légions, il est bien vain d'essayer de les lister tous : une simple recherche vous en convaincra. Bon courage !
 
-#### Support du texte brut
+#### Support du texte brut ou Markdown
 
 Bien que non-testée, la bibliothèque est supposée corriger les textes « bruts » (markdown, par exemple) aussi bien que le HTML, dans une certaine limite. A priori, il vaut mieux désactiver l'option qui corrige les espaces insécables.
 
@@ -124,6 +124,8 @@ Il lui *demanda* : « ça va ? », elle répondit : « oui ! »
 ```
 
 Autre limitation : les blocs de code encadrés par des triples-antiquotes ne seront pas proprement échappées.
+
+Des exemples complets se trouvent dans les fichiers en ``.md`` dans le dossier `tests/examples/`.
 
 ## Autres implémentations
 
