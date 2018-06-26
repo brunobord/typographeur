@@ -9,6 +9,7 @@
 * Correctif : les balises autofermées HTML ne comptent pas comme débuts de blocs à ignorer (#15).
 * Correctif : avant un point-virgule, un point d'interrogation ou un point d'exclamation, on insère une espace fine insécable (#14).
 * Correction d'une petite faute de typo dans l'aide de l'outil en ligne de commande et reformulation.
+* Correctif sur les exemples du README et les fichiers exemples en HTML et Markdown.
 
 ## v0.2.0
 

@@ -31,9 +31,9 @@ pip install -e ./
 ```python
 >>> from typographeur import typographeur
 >>> typographeur('<p>Exemple : <em>Salut ! ça va ?</em></p>')
-"<p>Exemple&nbsp;: <em>Salut&nbsp;! ça va&nbsp;?</em></p>"
+'<p>Exemple&nbsp;: <em>Salut&#8239;! ça va&#8239;?</em></p>'
 >>> typographeur('<strong>et , entre ( parenthèses  ...) les points sans espace  .</strong>')
-"<strong>et, entre (parenthèses…) les points sans espace.</strong>"
+'<strong>et, entre (parenthèses…) les points sans espace.</strong>'
 ```
 
 ## Origine
@@ -89,7 +89,7 @@ Une fois installé, le paquet propose un outil en ligne de commande. Exemples d'
 
 ```sh
 $ echo '<p>Salut! ça va?</p>' | typographeur
-<p>Salut&nbsp; ça va&nbsp;?</p>
+<p>Salut&#8239;! ça va&#8239;?</p>
 ```
 
 On peut également passer un ou plusieurs fichiers en tant que paramètres :
@@ -131,14 +131,14 @@ Avec la fonction :
 ```python
 >>> from typographeur import typographeur
 >>> typographeur('Il lui *demanda*    : "ça va?" , elle répondit: "oui !"', fix_nbsp=False)
-'Il lui *demanda*\xa0: «\xa0ça va\xa0?\xa0», elle répondit\xa0: «\xa0oui\xa0!\xa0»'
+'Il lui *demanda*\xa0: «\xa0ça va\u202f?\xa0», elle répondit\xa0: «\xa0oui\u202f!\xa0»'
 ```
 
 Avec l'outil en ligne de commande :
 
 ```sh
 echo 'Il lui *demanda*    : "ça va?" , elle répondit: "oui !"' | typographeur --skip-nbsp
-Il lui *demanda* : « ça va ? », elle répondit : « oui ! »
+Il lui *demanda* : « ça va ? », elle répondit : « oui ! »
 ```
 
 Autre limitation : les blocs de code encadrés par des triples-antiquotes ne seront pas proprement échappés.
