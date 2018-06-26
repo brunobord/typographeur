@@ -120,7 +120,7 @@ def typographeur(text,
     :param fix_comma_space: remove spaces before commas (,).
     :param fix_double_quote: change double quotes into french guillemets («»).
     :param fix_apostrophes: change single quotes with typographic apostrophes.
-    :param fix_nbsp: change insecable spaces into &nbsp; entities.
+    :param fix_nbsp: change insecable spaces into HTML entities.
     :returns: The same text, with all rules applied.
     """
     tokens = _tokenize(text)
@@ -256,7 +256,7 @@ def main():
         default=True, dest='fix_apostrophes')
     parser.add_argument(
         '--skip-nbsp', action='store_false',
-        help="Don't insecable spaces into HTML entities",
+        help="Don't transform insecable spaces into HTML entities",
         default=True, dest='fix_nbsp')
 
     parser.add_argument(
