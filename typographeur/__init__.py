@@ -106,7 +106,7 @@ def typographeur(text,
                  fix_interrogation=True, fix_semicolon=True,
                  fix_ellipsis=True, fix_point_space=True,
                  fix_comma_space=True, fix_double_quote=True,
-                 fix_apostrophes=True, fix_nbsp=True):
+                 fix_apostrophes=True, fix_nbsp=True, fix_nuples=True):
     """Apply french typography rules to the given text.
 
     :param text: The text to parse
@@ -121,6 +121,8 @@ def typographeur(text,
     :param fix_double_quote: change double quotes into french guillemets («»).
     :param fix_apostrophes: change single quotes with typographic apostrophes.
     :param fix_nbsp: change insecable spaces into HTML entities.
+    :param fix_nuples: apply the rule for multiple exclamation or interrogation
+                       points
     :returns: The same text, with all rules applied.
     """
     tokens = _tokenize(text)
@@ -161,8 +163,12 @@ def typographeur(text,
 
             for insecable_mark in fine_insecable_marks:
                 mark = insecable_mark[-1]
-                pattern = fr'((\s*?){insecable_mark})'
-                token = re.sub(pattern, f' {mark}', token)
+                pattern = fr'((\s*?)({insecable_mark}+))'
+                token = re.sub(pattern, ' \\3', token)
+                # We're fixing n-uples only for exclamation and question marks
+                if fix_nuples and mark in ('?', '!'):
+                    pattern = r'(%s{2,})' % insecable_mark
+                    token = re.sub(pattern, mark * 3, token)
 
             # Parenthesis
             if fix_parenthesis:
@@ -258,6 +264,10 @@ def main():
         '--skip-nbsp', action='store_false',
         help="Don't transform insecable spaces into HTML entities",
         default=True, dest='fix_nbsp')
+    parser.add_argument(
+        '--skip-nuples', action='store_false',
+        help="Don't apply multiple exclamation and interrogation points rule",
+        default=True, dest='fix_nuples')
 
     parser.add_argument(
         'files', metavar='FILE', type=FileType('r'),

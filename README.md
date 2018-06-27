@@ -59,6 +59,7 @@ Un exemple complet des correctifs que peut produire `typographeur` est disponibl
 * le signe `:` doit être précédé d'une espace insécable.
 * pas d'espace après une parenthèse ouvrante, ni avant une parenthèse fermante.
 * les points de suspension `...` sont remplacés par le caractère `…` ; de même, on *nettoie* les doubles, triples, quadruples, n-uples points. Le seul cas particulier, c'est celui de deux points encadrés par des crochets, dans le cas de l'ellipse d'une citation : ``[..]``.
+* Pour les points d'exclamation ou d'interrogation, la règle c'est d'en afficher un ou trois, mais jamais deux ou "n".
 * pas d'espace avant un point (simple `.` ou `…`) ou une virgule (`,`).
 * les guillemets doubles classiques ("") sont remplacés par des chevrons («»). À noter l'utilisation d'espaces insécables à l'intérieur des guillemets français.
 * les apostrophes `'` sont changées en `’` et ne doivent pas être suivies d'espaces.
@@ -82,6 +83,7 @@ Chaque règle peut être désactivée via le paramétrage de la fonction ``typog
 * ``fix_double_quote`` : transformer les guillemets doubles en chevrons.
 * ``fix_apostrophes`` : transformer les apostrophes "dactylographiques" en apostrophes "typographiques",
 * ``fix_nbsp`` : les espaces insécables ne seront pas converties en entités HTML, mais laissées telles quelles.
+* ``fix_nuples`` : appliquer les règles sur les points d'exclamation et d'interrogation multiples.
 
 ## Outil en ligne de commande
 
@@ -109,8 +111,9 @@ Par défaut, tous les paramètres de la fonction ``typographeur()`` sont activé
 * ``--skip-point-space``,
 * ``--skip-comma-space``,
 * ``--skip-double-quote``,
-* ``--skip-apostrophes``.
-* ``--skip-nbsp``.
+* ``--skip-apostrophes``,
+* ``--skip-nbsp``,
+* ``--skip-nuples``.
 
 Toutes les options disponibles sont visibles via :
 

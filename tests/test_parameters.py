@@ -75,3 +75,14 @@ def test_nbsp(input, expected):
     # spaces are replaced by insecable spaces,
     # insecable spaces are not replaced by `&nbsp;`
     assert output == expected
+
+
+@pytest.mark.parametrize("input,expected", [
+    ('hello??', 'hello&#8239;??'),
+    ('hello!!', 'hello&#8239;!!'),
+    ('hello ??', 'hello&#8239;??'),
+    ('hello !!', 'hello&#8239;!!'),
+])
+def test_nuples(input, expected):
+    output = typographeur(input, fix_nuples=False)
+    assert output == expected

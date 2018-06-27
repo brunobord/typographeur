@@ -13,3 +13,5 @@ Ou des points de suspension...
 Je dirai que c'est élémentaire et c'    est évident !
 
 Je cite de manière [....] incomplète.
+
+Pas de double ?? ni de quadruple !!!!
