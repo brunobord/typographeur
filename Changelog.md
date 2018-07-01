@@ -12,6 +12,7 @@
 * Correctif sur les exemples du README et les fichiers exemples en HTML et Markdown.
 * Ajout de la correction des doubles, triples, quadruples, nuples points d'exclamation et d'interrogation (#17).
 * Ajout de gabarits pour la création de rapports de bogue ou de demandes de fonctionnalités (#18).
+* Ajout d'un gabarit pour la création de "pull-requests".
 
 ## v0.2.0
 
