@@ -84,6 +84,7 @@ Chaque règle peut être désactivée via le paramétrage de la fonction ``typog
 * ``fix_apostrophes`` : transformer les apostrophes "dactylographiques" en apostrophes "typographiques",
 * ``fix_nbsp`` : les espaces insécables ne seront pas converties en entités HTML, mais laissées telles quelles.
 * ``fix_nuples`` : appliquer les règles sur les points d'exclamation et d'interrogation multiples.
+* ``fix_title_points`` : appliquer la règle interdisant les points à la fin d'un titre.
 
 ## Outil en ligne de commande
 
@@ -113,7 +114,8 @@ Par défaut, tous les paramètres de la fonction ``typographeur()`` sont activé
 * ``--skip-double-quote``,
 * ``--skip-apostrophes``,
 * ``--skip-nbsp``,
-* ``--skip-nuples``.
+* ``--skip-nuples``,
+* ``--skip-title-points``.
 
 Toutes les options disponibles sont visibles via :
 

@@ -11,6 +11,9 @@ __version__ = '0.3.0.dev0'
 __all__ = ('typographeur',)
 
 TAGS_TO_SKIP = ['pre', 'samp', 'code', 'tt', 'kbd', 'script', 'style', 'math']
+TITLE_TAGS = ('title', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6')
+START_TITLE_TAGS = tuple(map(lambda tag: f'<{tag}', TITLE_TAGS))
+END_TITLE_TAGS = tuple(map(lambda tag: f'</{tag}', TITLE_TAGS))
 
 
 def _tokenize(text):
@@ -81,6 +84,19 @@ def is_exit_skip(text):
     return False
 
 
+def is_enter_title(text):
+    if text.startswith(START_TITLE_TAGS) \
+            and not text.endswith("/>"):
+        return True
+    return False
+
+
+def is_exit_title(text):
+    if text.startswith(END_TITLE_TAGS):
+        return True
+    return False
+
+
 def convert_quote(text):
     in_quote = False
     result = []
@@ -106,7 +122,8 @@ def typographeur(text,
                  fix_interrogation=True, fix_semicolon=True,
                  fix_ellipsis=True, fix_point_space=True,
                  fix_comma_space=True, fix_double_quote=True,
-                 fix_apostrophes=True, fix_nbsp=True, fix_nuples=True):
+                 fix_apostrophes=True, fix_nbsp=True, fix_nuples=True,
+                 fix_title_points=True):
     """Apply french typography rules to the given text.
 
     :param text: The text to parse
@@ -122,12 +139,15 @@ def typographeur(text,
     :param fix_apostrophes: change single quotes with typographic apostrophes.
     :param fix_nbsp: change insecable spaces into HTML entities.
     :param fix_nuples: apply the rule for multiple exclamation or interrogation
-                       points
+                       points.
+    :param: fix_title_points: apply the rule that prevents titles to end
+                              with a period.
     :returns: The same text, with all rules applied.
     """
     tokens = _tokenize(text)
     result = []
     skip_counter = Counter()
+    is_in_title = False
     for token_type, token in tokens:
         if token_type == 'tag':
             # Check if it's a "enter" skip tag
@@ -137,6 +157,14 @@ def typographeur(text,
                 skip_counter[_is_enter_skip] += 1
             elif _is_exit_skip:
                 skip_counter[_is_exit_skip] += 1
+
+            _is_in_title = is_enter_title(token)
+            if _is_in_title and not is_in_title:
+                is_in_title = True
+            _is_exitting_title = is_exit_title(token)
+            if _is_exitting_title and is_in_title:
+                is_in_title = False
+
             result.append(token)
         else:
             if sum(skip_counter.values()):
@@ -198,6 +226,9 @@ def typographeur(text,
             # Apostrophes
             if fix_apostrophes:
                 token = re.sub(r"(\w)'(\s*)", r'\1’', token)
+
+            if is_in_title and fix_title_points:
+                token = re.sub('\\.(\s*)$', '', token)
 
             # Final token result
             result.append(token)
@@ -268,6 +299,10 @@ def main():
         '--skip-nuples', action='store_false',
         help="Don't apply multiple exclamation and interrogation points rule",
         default=True, dest='fix_nuples')
+    parser.add_argument(
+        '--skip-title-points', action='store_false',
+        help="Remove points at the end of titles and headings",
+        default=True, dest='fix_title_points')
 
     parser.add_argument(
         'files', metavar='FILE', type=FileType('r'),

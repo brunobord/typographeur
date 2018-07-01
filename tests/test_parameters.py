@@ -86,3 +86,18 @@ def test_nbsp(input, expected):
 def test_nuples(input, expected):
     output = typographeur(input, fix_nuples=False)
     assert output == expected
+
+
+@pytest.mark.parametrize("input,expected", [
+    ("<h1>Titre</h1>", "<h1>Titre</h1>"),
+    ("<h1>Titre.</h1>", "<h1>Titre.</h1>"),
+    ("<h2>Titre.</h2>", "<h2>Titre.</h2>"),
+    ("<h3>Titre.</h3>", "<h3>Titre.</h3>"),
+    ("<h4>Titre.</h4>", "<h4>Titre.</h4>"),
+    ("<h5>Titre.</h5>", "<h5>Titre.</h5>"),
+    ("<h6>Titre.</h6>", "<h6>Titre.</h6>"),
+    ("<title>Titre.</title>", "<title>Titre.</title>"),
+])
+def test_title_points(input, expected):
+    output = typographeur(input, fix_title_points=False)
+    assert output == expected

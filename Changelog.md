@@ -11,6 +11,7 @@
 * Correction d'une petite faute de typo dans l'aide de l'outil en ligne de commande et reformulation.
 * Correctif sur les exemples du README et les fichiers exemples en HTML et Markdown.
 * Ajout de la correction des doubles, triples, quadruples, nuples points d'exclamation et d'interrogation (#17).
+* Ajout d'une règle : un titre ne doit pas se terminer par un point (#19).
 * Ajout de gabarits pour la création de rapports de bogue ou de demandes de fonctionnalités (#18).
 * Ajout d'un gabarit pour la création de "pull-requests".
 
