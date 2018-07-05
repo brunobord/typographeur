@@ -14,6 +14,7 @@ TAGS_TO_SKIP = ['pre', 'samp', 'code', 'tt', 'kbd', 'script', 'style', 'math']
 TITLE_TAGS = ('title', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6')
 START_TITLE_TAGS = tuple(map(lambda tag: f'<{tag}', TITLE_TAGS))
 END_TITLE_TAGS = tuple(map(lambda tag: f'</{tag}', TITLE_TAGS))
+WORDS_OE = ('œil', 'vœu', 'vœux', 'sœur')
 
 
 def _tokenize(text):
@@ -123,7 +124,7 @@ def typographeur(text,
                  fix_ellipsis=True, fix_point_space=True,
                  fix_comma_space=True, fix_double_quote=True,
                  fix_apostrophes=True, fix_nbsp=True, fix_nuples=True,
-                 fix_title_points=True):
+                 fix_title_points=True, fix_eo=True):
     """Apply french typography rules to the given text.
 
     :param text: The text to parse
@@ -142,6 +143,7 @@ def typographeur(text,
                        points.
     :param: fix_title_points: apply the rule that prevents titles to end
                               with a period.
+    :param: fix_oe: replace "oe" by "œ" in words.
     :returns: The same text, with all rules applied.
     """
     tokens = _tokenize(text)
@@ -229,6 +231,11 @@ def typographeur(text,
 
             if is_in_title and fix_title_points:
                 token = re.sub('\\.(\s*)$', '', token)
+
+            if fix_eo:
+                for word in WORDS_OE:
+                    wrong_word = word.replace('œ', 'oe')
+                    token = re.sub(r'\b({})\b'.format(wrong_word), word, token)
 
             # Final token result
             result.append(token)
