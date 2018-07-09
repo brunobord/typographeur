@@ -129,6 +129,8 @@ L'objectif de cette bibliothèque reste modeste : il est vraisemblable que certa
 
 ## Support du texte brut ou Markdown
 
+**Attention :** le support de Markdown est en BÊTA.
+
 Avec la fonction idoine :
 
 ```python
