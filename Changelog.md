@@ -1,5 +1,9 @@
 # Changelog
 
+## master
+
+Rien ici pour le moment...
+
 ## v0.3.0
 
 Publiée le 10 juillet 2018.
