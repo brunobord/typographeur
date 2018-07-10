@@ -1,18 +1,28 @@
 # Changelog
 
-## master
+## v0.3.0
 
-* Correction de l'exemple du README pour l'outil en ligne de commande.
+Publiée le 10 juillet 2018.
+
+### Nouvelles règles
+
+* Correction des doubles, triples, quadruples, nuples points d'exclamation et d'interrogation (#17).
+* Un titre ne doit pas se terminer par un point (#19).
+
+### Corrections sur les règles
+
+* Deux points encadrés par des crochets sont des ellipses acceptables et ne doivent pas être remplacés par "…" (#13).
+* Les balises autofermées HTML ne comptent pas comme débuts de blocs à ignorer (#15).
+* Avant un point-virgule, un point d'interrogation ou un point d'exclamation, on insère une espace fine insécable (#14).
+
+### Autres changements
+
+* **Retrait du support de Markdown** au moins jusqu'à ce qu'on trouve un moyen de parser le fichier simplement. Désolé.
 * Ajout d'un "classifier" (Topic :: Text Processing :: Markup :: HTML).
 * Instructions d'installation dans le README.
-* Correctif : deux points encadrés par des crochets sont des ellipses acceptables et ne doivent pas être remplacés par "…" (#13).
-* Correctif : les balises autofermées HTML ne comptent pas comme débuts de blocs à ignorer (#15).
-* Correctif : avant un point-virgule, un point d'interrogation ou un point d'exclamation, on insère une espace fine insécable (#14).
+* Correction de l'exemple du README pour l'outil en ligne de commande.
 * Correction d'une petite faute de typo dans l'aide de l'outil en ligne de commande et reformulation.
-* Ajout de la correction des doubles, triples, quadruples, nuples points d'exclamation et d'interrogation (#17).
-* Ajout d'une règle : un titre ne doit pas se terminer par un point (#19).
 * Ajout de gabarits pour la création de rapports de bogue ou de demandes de fonctionnalités (#18).
-* Retrait du support de Markdown, au moins jusqu'à ce qu'on trouve un moyen de parser le fichier simplement. Désolé.
 * Ajout d'un gabarit pour la création de "pull-requests".
 
 ## v0.2.0
