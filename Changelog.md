@@ -9,11 +9,10 @@
 * Correctif : les balises autofermées HTML ne comptent pas comme débuts de blocs à ignorer (#15).
 * Correctif : avant un point-virgule, un point d'interrogation ou un point d'exclamation, on insère une espace fine insécable (#14).
 * Correction d'une petite faute de typo dans l'aide de l'outil en ligne de commande et reformulation.
-* Correctif sur les exemples du README et les fichiers exemples en HTML et Markdown.
 * Ajout de la correction des doubles, triples, quadruples, nuples points d'exclamation et d'interrogation (#17).
 * Ajout d'une règle : un titre ne doit pas se terminer par un point (#19).
 * Ajout de gabarits pour la création de rapports de bogue ou de demandes de fonctionnalités (#18).
-* Ajout du support pour Markdown via une fonction et un outil en ligne de commande (#16, #20).
+* Retrait du support de Markdown, au moins jusqu'à ce qu'on trouve un moyen de parser le fichier simplement. Désolé.
 * Ajout d'un gabarit pour la création de "pull-requests".
 
 ## v0.2.0

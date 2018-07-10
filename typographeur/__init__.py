@@ -241,27 +241,6 @@ def typographeur(text,
     return result
 
 
-def typographeur_markdown(text):
-    """Apply french typography rules to a Markdown content.
-
-    :param text: The text to parse
-    """
-    parts = re.split('(`{1,3})', text)
-    result = []
-    block_mark = ''
-    for part in parts:
-        if part in ('`', '``', '```'):
-            if part == block_mark:
-                block_mark = ''
-            else:
-                block_mark = part
-        if block_mark != '':
-            result.append(part)
-        else:
-            result.append(typographeur(part, fix_nbsp=False))
-    return ''.join(result)
-
-
 def main():
     parser = ArgumentParser(
         "Typographeur, pour faire respecter "
@@ -339,23 +318,3 @@ def main():
             print(typographeur(f.read(), **options), end='')
     else:
         print(typographeur(sys.stdin.read(), **options), end='')
-
-
-def typomarkdown():
-    parser = ArgumentParser(
-        "Typographeur/Markdown, pour faire respecter "
-        "les règles de typographie à la française."
-    )
-    parser.add_argument(
-        '--version', action='version', version=__version__,
-        help="Display current version"
-    )
-    parser.add_argument(
-        'files', metavar='FILE', type=FileType('r'),
-        nargs='*', help='File(s) to be processed ')
-    args = parser.parse_args()
-    if args.files:
-        for f in args.files:
-            print(typographeur_markdown(f.read()), end='')
-    else:
-        print(typographeur_markdown(sys.stdin.read()), end='')

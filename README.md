@@ -129,26 +129,9 @@ L'objectif de cette bibliothèque reste modeste : il est vraisemblable que certa
 
 ## Support du texte brut ou Markdown
 
-**Attention :** le support de Markdown est en BÊTA.
+**Attention :** le support de Markdown est à notre grand regret abandonné. Les tentatives jusqu'ici impliquaient une gestion des blocs simples en parcourant le contenu le plus simplement possible à l'aide d'expressions rationnelles. Mais la muraille infranchissable, c'est le tableau (disponible en *Github Flavored Markdown* et dans d'autres parsers).
 
-Avec la fonction idoine :
-
-```python
->>> from typographeur import typographeur_markdown
->>> typographeur_markdown('Il lui *demanda*    : "ça va?" , elle répondit: "oui !"')
-'Il lui *demanda*\xa0: «\xa0ça va\u202f?\xa0», elle répondit\xa0: «\xa0oui\u202f!\xa0»'
-```
-
-Avec l'outil en ligne de commande :
-
-```sh
-echo 'Il lui *demanda*    : "ça va?" , elle répondit: "oui !"' | typographeur-markdown
-Il lui *demanda* : « ça va ? », elle répondit : « oui ! »
-```
-
-On trouve un exemple complet se trouvent dans les fichiers en ``.md`` dans le dossier `tests/examples/`.
-
-À noter que les éléments encadrés par des antiquotes (`comme ceci` ou `comme cela` ou encore les blocs de code encadrés par des triples antiquotes).
+**Dans nos projets :** une bibliothèque tierce, qui utilisera un parser Markdown pour faire un rendu Markdown "typographié". Restez à l'écoute !
 
 ## Autres implémentations
 
