@@ -17,7 +17,7 @@ Comme d'autres paquets Python, Typographeur s'installe à l'aide de ``pip``, de 
 pip install typographeur
 ```
 
-Pour contribuer ou "faire mumuse" avec ce code, [clonez le dépôt Github](https://github.com:brunobord/typographeur) et installez-le en mode "dev" dans l'environnement courant :
+Pour contribuer ou "faire mumuse" avec ce code, [clonez le dépôt Github](https://github.com/brunobord/typographeur) et installez-le en mode "dev" dans l'environnement courant :
 
 ```sh
 git clone git@github.com:brunobord/typographeur.git
