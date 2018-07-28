@@ -101,3 +101,47 @@ def test_nuples(input, expected):
 def test_title_points(input, expected):
     output = typographeur(input, fix_title_points=False)
     assert output == expected
+
+
+@pytest.mark.parametrize("input", [
+    "un oeil, des yeux",
+    "un œil, des yeux",
+])
+def test_oe(input):
+    output = typographeur(input, fix_oe=False)
+    assert output == input
+
+
+@pytest.mark.parametrize("input", [
+    "une novae, des supernovae",
+    "un novæ, des supernovæ",
+])
+def test_ae(input):
+    output = typographeur(input, fix_ae=False)
+    assert output == input
+
+
+def test_ligature_variant():
+    with pytest.raises(ValueError):
+        typographeur("", ligature_variant="unknown")
+
+    with pytest.raises(ValueError):
+        typographeur("", fix_ae=False, ligature_variant="unknown")
+
+    with pytest.raises(ValueError):
+        typographeur("", fix_oe=False, ligature_variant="unknown")
+
+    try:
+        typographeur("", fix_ae=False, fix_oe=False,
+                     ligature_variant="unknown")
+    except ValueError:
+        pytest.fail("Should not raise any exception")
+
+
+def test_ligature_classique():
+    # the word "angstrœm" is not in 'classique', but is in 'reforme1990'
+    result = typographeur("angstroem", ligature_variant="classique")
+    assert result == "angstroem"
+
+    result = typographeur("angstroem", ligature_variant="reforme1990")
+    assert result == "angstrœm"

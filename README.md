@@ -63,6 +63,7 @@ Un exemple complet des correctifs que peut produire `typographeur` est disponibl
 * pas d'espace avant un point (simple `.` ou `…`) ou une virgule (`,`).
 * les guillemets doubles classiques ("") sont remplacés par des chevrons («»). À noter l'utilisation d'espaces insécables à l'intérieur des guillemets français.
 * les apostrophes `'` sont changées en `’` et ne doivent pas être suivies d'espaces.
+* les mots contenant des ligatures seront corrigés (`oe` => `œ` et `ae` => `æ`). Pour ce faire, nous utilisons le dictionnaire fourni par [Dicollecte](https://www.dicollecte.org/).
 
 Pour votre plaisir, un document HTML qui respecte les règles énoncées ci-dessus restera inchangé.
 
@@ -85,6 +86,9 @@ Chaque règle peut être désactivée via le paramétrage de la fonction ``typog
 * ``fix_nbsp`` : les espaces insécables ne seront pas converties en entités HTML, mais laissées telles quelles.
 * ``fix_nuples`` : appliquer les règles sur les points d'exclamation et d'interrogation multiples.
 * ``fix_title_points`` : appliquer la règle interdisant les points à la fin d'un titre.
+* ``fix_oe`` : appliquer la règle des ligatures sur les mots en `œ`.
+* ``fix_ae`` : appliquer la règle des ligatures sur les mots en `æ`.
+* ``ligature_variant`` : désigne quel variante du dictionnaire utiliser pour la correction des ligatures. Il en existe 4 : 'classique', 'moderne', 'reforme1990' et 'toutesvariantes' (par défaut).
 
 ## Outil en ligne de commande
 
@@ -116,6 +120,9 @@ Par défaut, tous les paramètres de la fonction ``typographeur()`` sont activé
 * ``--skip-nbsp``,
 * ``--skip-nuples``,
 * ``--skip-title-points``.
+* ``--skip-oe``.
+* ``--skip-ae``.
+* ``--ligature-variant``.
 
 Toutes les options disponibles sont visibles via :
 

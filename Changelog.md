@@ -2,7 +2,7 @@
 
 ## master
 
-Rien ici pour le moment...
+* Ajout de la règle de correction des ligatures en `œ` et `æ` (#2).
 
 ## v0.3.0
 

@@ -6,6 +6,7 @@ from collections import Counter
 import re
 import sys
 
+from .ligatures import ligature_dictionaries
 
 __version__ = '0.4.0.dev0'
 __all__ = ('typographeur',)
@@ -14,7 +15,6 @@ TAGS_TO_SKIP = ['pre', 'samp', 'code', 'tt', 'kbd', 'script', 'style', 'math']
 TITLE_TAGS = ('title', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6')
 START_TITLE_TAGS = tuple(map(lambda tag: f'<{tag}', TITLE_TAGS))
 END_TITLE_TAGS = tuple(map(lambda tag: f'</{tag}', TITLE_TAGS))
-WORDS_OE = ('œil', 'vœu', 'vœux', 'sœur')
 
 
 def _tokenize(text):
@@ -124,7 +124,8 @@ def typographeur(text,
                  fix_ellipsis=True, fix_point_space=True,
                  fix_comma_space=True, fix_double_quote=True,
                  fix_apostrophes=True, fix_nbsp=True, fix_nuples=True,
-                 fix_title_points=True, fix_eo=True):
+                 fix_title_points=True,
+                 fix_oe=True, fix_ae=True, ligature_variant='toutesvariantes'):
     """Apply french typography rules to the given text.
 
     :param text: The text to parse
@@ -144,8 +145,20 @@ def typographeur(text,
     :param: fix_title_points: apply the rule that prevents titles to end
                               with a period.
     :param: fix_oe: replace "oe" by "œ" in words.
+    :param: fix_ae: replace "ae" by "æ" in words.
+    :param: ligature_variant: name the ligature variant to use when fixing
+                              ligatures.
     :returns: The same text, with all rules applied.
     """
+
+    if fix_ae or fix_oe:
+        # check the ligature_variant parameter
+        if ligature_variant not in ligature_dictionaries:
+            raise ValueError((
+                "Can't fix ligatures: "
+                f": {ligature_variant} is an unknown variant"
+            ))
+
     tokens = _tokenize(text)
     result = []
     skip_counter = Counter()
@@ -232,9 +245,16 @@ def typographeur(text,
             if is_in_title and fix_title_points:
                 token = re.sub('\\.(\s*)$', '', token)
 
-            if fix_eo:
-                for word in WORDS_OE:
+            if fix_oe:
+                words_oe = ligature_dictionaries.get(ligature_variant)['œ']
+                for word in words_oe:
                     wrong_word = word.replace('œ', 'oe')
+                    token = re.sub(r'\b({})\b'.format(wrong_word), word, token)
+
+            if fix_ae:
+                words_ae = ligature_dictionaries.get(ligature_variant)['æ']
+                for word in words_ae:
+                    wrong_word = word.replace('æ', 'ae')
                     token = re.sub(r'\b({})\b'.format(wrong_word), word, token)
 
             # Final token result
@@ -310,6 +330,19 @@ def main():
         '--skip-title-points', action='store_false',
         help="Remove points at the end of titles and headings",
         default=True, dest='fix_title_points')
+    parser.add_argument(
+        '--skip-oe', action='store_false',
+        help="Do not fix œ ligature",
+        default=True, dest='fix_oe')
+    parser.add_argument(
+        '--skip-ae', action='store_false',
+        help="Do not fix æ ligature",
+        default=True, dest='fix_ae')
+    parser.add_argument(
+        '--ligature-variant',
+        help="Select dictionary variant when you want to fix ligatures",
+        choices=ligature_dictionaries.keys(),
+        default='toutesvariantes')
 
     parser.add_argument(
         'files', metavar='FILE', type=FileType('r'),
@@ -319,6 +352,8 @@ def main():
 
     options = [arg for arg in dir(args) if arg.startswith('fix_')]
     options = {arg: getattr(args, arg) for arg in options}
+
+    options['ligature_variant'] = args.ligature_variant
 
     if args.files:
         for f in args.files:
