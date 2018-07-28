@@ -8,7 +8,7 @@ import sys
 
 from .ligatures import ligature_dictionaries
 
-__version__ = '0.4.0.dev0'
+__version__ = '0.4.0'
 __all__ = ('typographeur',)
 
 TAGS_TO_SKIP = ['pre', 'samp', 'code', 'tt', 'kbd', 'script', 'style', 'math']

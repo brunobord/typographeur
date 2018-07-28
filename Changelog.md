@@ -1,6 +1,10 @@
 # Changelog
 
-## master
+## v0.4.0
+
+Publiée le 28 juillet 2018.
+
+### Nouvelle règle
 
 * Ajout de la règle de correction des ligatures en `œ` et `æ` (#2).
 
