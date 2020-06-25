@@ -193,8 +193,8 @@ def typographeur(text,
             token = token.replace('&#8239;', ' ')
 
             if fix_colon:
-                pattern = fr'((\s*?):)'
-                token = re.sub(pattern, f' :', token)
+                pattern = r'((\s*?):)'
+                token = re.sub(pattern, ' :', token)
 
             fine_insecable_marks = set([';', '\?', '!'])
             if not fix_exclamation:
