@@ -2,7 +2,8 @@
 
 ## master
 
-Rien ici pour le moment…
+* Petites corrections qui evitent l'affichage de messages d'attentions [warning]
+* Ajout du support de Python 3.8
 
 ## v0.4.0
 

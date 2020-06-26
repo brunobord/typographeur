@@ -5,9 +5,9 @@
 Status: Beta
 
 [![Build Status](https://travis-ci.org/brunobord/typographeur.svg?branch=master)](https://travis-ci.org/brunobord/typographeur)
-![Python versions: 3.6, 3.7](https://img.shields.io/pypi/pyversions/typographeur.svg)
+![Python versions: 3.6, 3.7 et 3.8](https://img.shields.io/pypi/pyversions/typographeur.svg)
 
-Compatibilité : Python 3.6 et 3.7.
+Compatibilité : Python 3.6, 3.7 et 3.8.
 
 ## Installation
 
@@ -157,7 +157,7 @@ Ce projet est librement utilisable, publié sous licence MIT.
 
 -----
 
-In *English*, now: this Python (3.6 & 3.7) library tries to apply basic French typography rules. It's vastly inspired by SmartyPants, and borrows a lot of code from it.
+In *English*, now: this Python (3.6, 3.7 & 3.8) library tries to apply basic French typography rules. It's vastly inspired by SmartyPants, and borrows a lot of code from it.
 
 * [Initial SmartyPants project](https://daringfireball.net/projects/smartypants/)
 * [Current smartypants.py code](https://pypi.org/project/smartypants/)

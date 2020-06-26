@@ -193,14 +193,14 @@ def typographeur(text,
             token = token.replace('&#8239;', ' ')
 
             if fix_colon:
-                pattern = fr'((\s*?):)'
-                token = re.sub(pattern, f' :', token)
+                pattern = r'((\s*?):)'
+                token = re.sub(pattern, ' :', token)
 
-            fine_insecable_marks = set([';', '\?', '!'])
+            fine_insecable_marks = set([';', r'\?', '!'])
             if not fix_exclamation:
                 fine_insecable_marks.remove('!')
             if not fix_interrogation:
-                fine_insecable_marks.remove('\?')
+                fine_insecable_marks.remove(r'\?')
             if not fix_semicolon:
                 fine_insecable_marks.remove(';')
 
@@ -243,7 +243,7 @@ def typographeur(text,
                 token = re.sub(r"(\w)'(\s*)", r'\1’', token)
 
             if is_in_title and fix_title_points:
-                token = re.sub('\\.(\s*)$', '', token)
+                token = re.sub(r'\.(\s*)$', '', token)
 
             if fix_oe:
                 words_oe = ligature_dictionaries.get(ligature_variant)['œ']
