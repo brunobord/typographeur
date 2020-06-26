@@ -1,8 +1,12 @@
 # Changelog
 
-## master
+## v0.5.0
 
-* Petites corrections qui evitent l'affichage de messages d'attentions [warning]
+Publiée le 26 juin 2020.
+
+### Changements annexes
+
+* Petites corrections qui évitent l'affichage de messages d'attentions [warning]
 * Ajout du support de Python 3.8
 
 ## v0.4.0
