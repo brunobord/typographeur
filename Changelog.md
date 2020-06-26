@@ -2,7 +2,7 @@
 
 ## master
 
-Rien ici pour le moment…
+* Construction d'un wheel "non-universel" (comprendre : uniquement pour Python 3+).
 
 ## v0.5.0
 
