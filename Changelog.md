@@ -1,5 +1,9 @@
 # Changelog
 
+## master
+
+Rien ici pour le moment…
+
 ## v0.5.0
 
 Publiée le 26 juin 2020.
