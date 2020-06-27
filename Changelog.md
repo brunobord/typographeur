@@ -2,6 +2,12 @@
 
 ## master
 
+### Corrections sur les règles
+
+* Correction d'une erreur sur les balises ignorées. Une fois déclenchée, le "skip" des balises ne se remettait plus à zéro.
+
+### Changements annexes
+
 * Construction d'un wheel "non-universel" (comprendre : uniquement pour Python 3+).
 * Ajout du coverage dans le lancement des tests. Petit correctif sur le mode d'installation des dépendances (travis utilisait une version périmée de pytest dans son virtualenv Python 3.6/3.7)
 

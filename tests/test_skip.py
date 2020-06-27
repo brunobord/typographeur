@@ -24,3 +24,14 @@ def test_skip_simple(input, expected):
 def test_auto_closed(input, expected):
     output = typographeur(input)
     assert output == expected
+
+
+@pytest.mark.parametrize("input,expected", [
+    ('<pre>skipped!</pre> and <b>not skipped!</b>',
+     '<pre>skipped!</pre> and <b>not skipped&#8239;!</b>'),
+    ('<pre><code>skip!</code> Also skip!</pre> and <b>not skipped!</b>',
+     '<pre><code>skip!</code> Also skip!</pre> and <b>not skipped&#8239;!</b>')
+])
+def test_skip_then_no_skip(input, expected):
+    output = typographeur(input)
+    assert output == expected

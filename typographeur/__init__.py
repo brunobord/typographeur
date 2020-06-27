@@ -171,7 +171,7 @@ def typographeur(text,
             if _is_enter_skip:
                 skip_counter[_is_enter_skip] += 1
             elif _is_exit_skip:
-                skip_counter[_is_exit_skip] += 1
+                skip_counter[_is_exit_skip] -= 1
 
             _is_in_title = is_enter_title(token)
             if _is_in_title and not is_in_title:
