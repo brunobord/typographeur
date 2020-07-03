@@ -6,7 +6,7 @@ from typographeur import typographeur
     ("un truc dans l'oeil", "un truc dans l’œil"),
     ("un truc dans l'oeilgrrr", "un truc dans l’oeilgrrr"),  # unknown word
     ("oeil-de-truc", "œil-de-truc"),  # compound word at the beginning
-    ("un oeil, des yeux", "un œil, des yeux"),
+    ("un oeil, des yeux, des voeux", "un œil, des yeux, des vœux"),
 ])
 def test_oe(input, expected):
     output = typographeur(input)

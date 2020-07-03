@@ -12,11 +12,35 @@ Ligature dictionary
 
 class Word(object):
     def __init__(self, wordline):
-        self.word, _, self.tags = wordline.partition('/')
+        self._line = wordline  # for debugging
+        if "/" in wordline:
+            self.word, _, self.tags = wordline.partition('/')
+        else:
+            self.word = wordline.split()[0]
+            self.tags = ""
 
     @property
-    def plural(self):
-        return bool(self.tags)
+    def has_plural(self):
+        if not self.tags:
+            return False
+        if "is:inv" in self.tags:  # invariable
+            return False
+        if "po:v" in self.tags:  # verbe
+            return False
+        if "is:pl" in self.tags:  # déjà au pluriel
+            return False
+        if "is:sg" in self.tags:  # forme singulier / pluriel à part
+            return False
+        return True
+
+    @property
+    def plural_form(self):
+        if self.has_plural:
+            if self.tags[0] in ("S", "F", "W"):
+                return "s"
+            if self.tags[0] == "X":
+                return "x"
+            raise Exception((self.word, self.tags))
 
 
 def read_variant(variant):
@@ -31,8 +55,8 @@ def generate_words_with_plural(variant, words):
     oe_words_source = map(Word, oe_words_source)
     for word in oe_words_source:
         yield word.word
-        if word.plural:
-            yield f'{word.word}s'
+        if word.has_plural:
+            yield f'{word.word}{word.plural_form}'
 
 
 def generate_variant(variant):
