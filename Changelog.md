@@ -5,6 +5,7 @@
 ### Corrections sur les règles
 
 * Correction d'une erreur sur les balises ignorées. Une fois déclenchée, le "skip" des balises ne se remettait plus à zéro.
+* Intégration du dictionnaire français au format _hunspell_ version 6.4.2.
 
 ### Changements annexes
 
