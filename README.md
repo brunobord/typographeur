@@ -119,14 +119,23 @@ Par défaut, tous les paramètres de la fonction ``typographeur()`` sont activé
 * ``--skip-apostrophes``,
 * ``--skip-nbsp``,
 * ``--skip-nuples``,
-* ``--skip-title-points``.
-* ``--skip-oe``.
-* ``--skip-ae``.
+* ``--skip-title-points``,
+* ``--skip-oe``,
+* ``--skip-ae``,
 * ``--ligature-variant``.
 
-Toutes les options disponibles sont visibles via :
+L'option ``--show-default-skip-tags`` affiche la liste des balises HTML qui seront ignorées. Cela signifie qu'à l'intérieur de ces balises, `typographeur` ne cherchera pas à corriger le contenu en utilisant les règles.
 
-```sh
+Exemple :
+
+```console
+$ typographeur --show-default-skip-tags
+pre,samp,code,tt,kbd,script,style,math
+```
+
+Toutes les options disponibles et leurs textes d'aide sont visibles via :
+
+```console
 $ typographeur --help
 ```
 

@@ -279,6 +279,12 @@ def main():
     )
 
     parser.add_argument(
+        '--show-default-skip-tags', action="store_true",
+        help="Show all skipped tags and exit",
+        default=False, dest="show_skip_tags"
+    )
+
+    parser.add_argument(
         '--skip-parenthesis', action='store_false',
         help="Don't apply parenthesis rule",
         default=True, dest='fix_parenthesis')
@@ -349,6 +355,11 @@ def main():
         nargs='*', help='File(s) to be processed ')
 
     args = parser.parse_args()
+
+    # If you want to show all skipped tags
+    if args.show_skip_tags:
+        print(",".join(TAGS_TO_SKIP))
+        sys.exit()
 
     options = [arg for arg in dir(args) if arg.startswith('fix_')]
     options = {arg: getattr(args, arg) for arg in options}

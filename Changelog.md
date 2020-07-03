@@ -11,7 +11,8 @@
 ### Changements annexes
 
 * Construction d'un wheel "non-universel" (comprendre : uniquement pour Python 3+).
-* Ajout du coverage dans le lancement des tests. Petit correctif sur le mode d'installation des dépendances (travis utilisait une version périmée de pytest dans son virtualenv Python 3.6/3.7)
+* Ajout du coverage dans le lancement des tests. Petit correctif sur le mode d'installation des dépendances (travis utilisait une version périmée de pytest dans son virtualenv Python 3.6/3.7).
+* Ajout d'une option ``--show-default-skip-tags`` pour afficher la liste des balises HTML (séparés par une virgule) qui seront ignorées (#9).
 
 ## v0.5.0
 
