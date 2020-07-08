@@ -70,17 +70,18 @@ def _tokenize(text):
     return tokens
 
 
-def is_enter_skip(text):
-    for tag in TAGS_TO_SKIP:
+def is_enter_skip(text, skip_tags):
+    for tag in skip_tags:
         # Autoclose tags won't trigger a start / end.
-        if text.startswith(f'<{tag}') and not text.endswith('/>'):
+        if (text.startswith(f'<{tag}>') or text.startswith(f'<{tag} ')) \
+                and not text.endswith('/>'):
             return tag
     return False
 
 
-def is_exit_skip(text):
-    for tag in TAGS_TO_SKIP:
-        if text.startswith(f'</{tag}'):
+def is_exit_skip(text, skip_tags):
+    for tag in skip_tags:
+        if text.startswith(f'</{tag}>'):
             return tag
     return False
 
@@ -117,6 +118,24 @@ def convert_quote(text):
     return ''.join(result)
 
 
+def clean_skip_tags_option(tags_string):
+    """
+    Parse and clean skipped tags option
+
+    * Separator can be "," or " " (or both)
+    * Tags are de-duplicated
+    * Tags are sorted alphabetically
+
+    The output is separated by commas, without any space.
+    """
+    tags = re.split(r',| ', tags_string)
+    tags = filter(bool, tags)
+    tags = set(tags)
+    tags = list(tags)
+    tags = sorted(tags)
+    return tags
+
+
 def typographeur(text,
                  fix_parenthesis=True,
                  fix_colon=True, fix_exclamation=True,
@@ -125,7 +144,8 @@ def typographeur(text,
                  fix_comma_space=True, fix_double_quote=True,
                  fix_apostrophes=True, fix_nbsp=True, fix_nuples=True,
                  fix_title_points=True,
-                 fix_oe=True, fix_ae=True, ligature_variant='toutesvariantes'):
+                 fix_oe=True, fix_ae=True, ligature_variant='toutesvariantes',
+                 skip_tags=None):
     """Apply french typography rules to the given text.
 
     :param text: The text to parse
@@ -148,6 +168,8 @@ def typographeur(text,
     :param: fix_ae: replace "ae" by "æ" in words.
     :param: ligature_variant: name the ligature variant to use when fixing
                               ligatures.
+    :param: skip_tags: a list/tuple/iterable of tags to skip. If None we're
+                       using the default list.
     :returns: The same text, with all rules applied.
     """
 
@@ -159,6 +181,9 @@ def typographeur(text,
                 f": {ligature_variant} is an unknown variant"
             ))
 
+    if not skip_tags:  # empty or None
+        skip_tags = TAGS_TO_SKIP
+
     tokens = _tokenize(text)
     result = []
     skip_counter = Counter()
@@ -166,8 +191,8 @@ def typographeur(text,
     for token_type, token in tokens:
         if token_type == 'tag':
             # Check if it's a "enter" skip tag
-            _is_enter_skip = is_enter_skip(token)
-            _is_exit_skip = is_exit_skip(token)
+            _is_enter_skip = is_enter_skip(token, skip_tags)
+            _is_exit_skip = is_exit_skip(token, skip_tags)
             if _is_enter_skip:
                 skip_counter[_is_enter_skip] += 1
             elif _is_exit_skip:
@@ -279,12 +304,6 @@ def main():
     )
 
     parser.add_argument(
-        '--show-default-skip-tags', action="store_true",
-        help="Show all skipped tags and exit",
-        default=False, dest="show_skip_tags"
-    )
-
-    parser.add_argument(
         '--skip-parenthesis', action='store_false',
         help="Don't apply parenthesis rule",
         default=True, dest='fix_parenthesis')
@@ -350,6 +369,21 @@ def main():
         choices=ligature_dictionaries.keys(),
         default='toutesvariantes')
 
+    # Tag skipping handling
+    parser.add_argument(
+        '--show-default-skip-tags', action="store_true",
+        help="Show all skipped tags and exit",
+        default=False, dest="show_skip_tags"
+    )
+
+    parser.add_argument(
+        '--skip-tags', default=None, type=str,
+        help=(
+            "Assign tags to skip. Could be a comma or space separated list. "
+            'Ex: --skip-tags="math,tt". This will overwrite the defaults.'
+        )
+    )
+
     parser.add_argument(
         'files', metavar='FILE', type=FileType('r'),
         nargs='*', help='File(s) to be processed ')
@@ -361,10 +395,16 @@ def main():
         print(",".join(TAGS_TO_SKIP))
         sys.exit()
 
+    skip_tags = TAGS_TO_SKIP
+    if args.skip_tags:
+        # Parse and clean tags
+        skip_tags = clean_skip_tags_option(args.skip_tags)
+
     options = [arg for arg in dir(args) if arg.startswith('fix_')]
     options = {arg: getattr(args, arg) for arg in options}
 
     options['ligature_variant'] = args.ligature_variant
+    options['skip_tags'] = skip_tags
 
     if args.files:
         for f in args.files:

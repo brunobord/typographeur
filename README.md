@@ -105,7 +105,13 @@ On peut également passer un ou plusieurs fichiers en tant que paramètres :
 $ typographeur input1.html input2.html
 ```
 
-Par défaut, tous les paramètres de la fonction ``typographeur()`` sont activés. On peut les désactiver via les options suivantes :
+Toutes les options disponibles et leurs textes d'aide sont visibles via :
+
+```console
+$ typographeur --help
+```
+
+Par défaut, tous les paramètres booléens de la fonction ``typographeur()`` sont activés. On peut les désactiver via les options suivantes :
 
 * ``--skip-parenthesis``,
 * ``--skip-colon``,
@@ -124,6 +130,8 @@ Par défaut, tous les paramètres de la fonction ``typographeur()`` sont activé
 * ``--skip-ae``,
 * ``--ligature-variant``.
 
+### Ignorer certaines balises
+
 L'option ``--show-default-skip-tags`` affiche la liste des balises HTML qui seront ignorées. Cela signifie qu'à l'intérieur de ces balises, `typographeur` ne cherchera pas à corriger le contenu en utilisant les règles.
 
 Exemple :
@@ -133,10 +141,31 @@ $ typographeur --show-default-skip-tags
 pre,samp,code,tt,kbd,script,style,math
 ```
 
-Toutes les options disponibles et leurs textes d'aide sont visibles via :
+On peut définir soi-même les balises qu'on veut ignorer. Les noms des balises à ignorer sont séparés par des virgules.
+
+*Note :* les noms des balises peuvent aussi être séparés par des espaces, et seront dé-doublonnées.
+
+Voici un premier exemple sans l'option :
 
 ```console
-$ typographeur --help
+$ echo '<pre>Corrigé?</pre> <b>Pas corrigé?</b> <code>Pas Corrigé!</code>' | typographeur
+<pre>Corrigé?</pre> <b>Pas corrigé&#8239;?</b> <code>Pas Corrigé!</code>
+```
+
+En indiquant qu'on veut ignorer les balises ``<b>`` et ``<code>`` :
+
+```console
+$ echo '<pre>Corrigé?</pre> <b>Pas corrigé?</b> <code>Pas Corrigé!</code>' | typographeur --skip-tags="b,code"
+<pre>Corrigé&#8239;?</pre> <b>Pas corrigé?</b> <code>Pas Corrigé!</code>
+```
+
+Vous aurez constaté que seuls le contenu de la balise ``<pre>`` a été corrigé.
+
+Si vous voulez corriger toutes les balises par défaut + vos balises personnelles, vous pourrez le faire comme suit :
+
+```console
+$ echo '<pre>Corrigé?</pre> <b>Pas corrigé?</b> <code>Pas Corrigé!</code>' | typographeur --skip-tags="$(typographeur --show-default-skip-tags),b,em,strong"
+<pre>Corrigé?</pre> <b>Pas corrigé?</b> <code>Pas Corrigé!</code>
 ```
 
 ### Limitations
