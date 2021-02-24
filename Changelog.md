@@ -7,6 +7,7 @@
 * Correction d'une erreur sur les balises ignorées. Une fois déclenchée, le "skip" des balises ne se remettait plus à zéro.
 * Intégration du dictionnaire français au format _hunspell_ version 6.4.2. Le format des fichiers a fondamentalement changé, ce qui a nécessité de réécrire le script d'intégration des ligatures.
 * Correction de la pluralisation de certains mots du dictionnaire (par exemple, "vœu" était pluralisé "vœus" au lieu de "vœux").
+* Ajout du support de Python 3.9.
 
 ### Changements annexes
 
