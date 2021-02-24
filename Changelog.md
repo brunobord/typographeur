@@ -15,6 +15,7 @@
 * Ajout d'une option ``--show-default-skip-tags`` pour afficher la liste des balises HTML (séparés par une virgule) qui seront ignorées (#9).
 * Ajout d'une option ``--skip-tags`` (#9).
 * Amélioration de la détection des débuts/fins de balises.
+* Ajout du support de Python 3.9.
 
 ## v0.5.0
 
